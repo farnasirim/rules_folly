@@ -277,10 +277,7 @@ def folly_library(
         hdrs = ["folly_config_h"] +
                native.glob(hdrs, exclude = common_excludes + hdrs_excludes),
         srcs = native.glob(srcs, exclude = common_excludes + srcs_excludes),
-        copts = common_copts + select({
-            "@com_github_storypku_rules_folly//bazel:linux_x86_64": ["-mpclmul"],
-            "//conditions:default": [],
-        }),
+        copts = common_copts + ["-mpclmul"],
         includes = ["."],
         linkopts = [
             "-pthread",

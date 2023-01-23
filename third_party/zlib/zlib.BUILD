@@ -52,13 +52,10 @@ cc_library(
         # choice of <> or "" delimiter when including itself.
     ] + _ZLIB_HEADERS,
     hdrs = _ZLIB_PREFIXED_HEADERS,
-    copts = select({
-        "@bazel_tools//src/conditions:windows": [],
-        "//conditions:default": [
+    copts = [
             "-Wno-unused-variable",
             "-Wno-implicit-function-declaration",
-        ],
-    }),
+    ],
     includes = ["zlib/include/"],
     visibility = ["//visibility:public"],
 )
